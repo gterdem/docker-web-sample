@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+
+  docker.sample.web:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=5001
+      - Kestrel__Certificates__Default__Password=42b82fa6-9e3b-42e8-9b84-3e00521f6c7c
+      - Kestrel__Certificates__Default__Path=/root/certificate/test-devcert.pfx
+    ports:
+      - "80"
+      - "443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - ./dev-cert:/root/certificate
+      - ./DockerSample.Web:/app/

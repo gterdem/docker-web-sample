@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+      
+  docker.sample.web:
+    image: docker.sample.web
+    container_name: docker.sample.web_container
+    build:
+      context: .
+      dockerfile: DockerSample.Web/Dockerfile
+    ports:
+      - "44393:5000"
